@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="login100-more mask col-md-6"
-                style="background-image: url('https://images.pexels.com/photos/4194612/pexels-photo-4194612.jpeg?cs=srgb&dl=pexels-ponyo-sakana-4194612.jpg&fm=jpg');">
+                style="background-image: url('assets/login-bg.jpg');">
 
 
                <!---- <p>Bienvenido a Aidacaceres CMS</p>--->
@@ -13,7 +13,7 @@
             <div class="login100-form validate-form col-md-6">
 
                 <p class="text-center">
-                    <img src="{{ url('fian.png') }}" style="width: 150px;">
+                    <img src="{{ url('assets/logo-black.png') }}" style="width: 150px;">
                 </p>
 
                 <p> Content Management System </p>
@@ -36,7 +36,7 @@
 
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" @click="login()" style="background-color: rgb(20, 78, 65);">
+                    <button class="login100-form-btn" @click="login()">
                         Entrar
                     </button>
                 </div>

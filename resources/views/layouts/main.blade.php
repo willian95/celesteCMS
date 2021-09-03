@@ -17,7 +17,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>Binnoops CMS</title>
+		<title>Celeste CMS</title>
 		<meta name="description" content="User datatable listing" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
@@ -90,7 +90,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="{{ url('/') }}">
-				<img alt="Logo" class="w-45px" src="{{ asset('assets/img/logo/logo1.png') }}" />
+				<img alt="Logo" class="w-45px" src="{{ asset('assets/logo-white.png') }}" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -133,7 +133,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="{{ url('/') }}">
-							<img alt="Logo" src="{{ asset('assets/img/logo/logo1.png') }}" style="width: 100px;" />
+							<img alt="Logo" src="{{ asset('assets/logo-white.png') }}" style="width: 100px;" />
 						</a>
 					</div>
 					<!--end::Brand-->
@@ -178,18 +178,72 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 								</li>
 
-								<li class="menu-item" aria-haspopup="true">
-									<a href="{{ route('video') }}" class="menu-link">
-										<i class="menu-icon flaticon-web"></i>
-										<span class="menu-text">Video</span>
+								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+									<a href="javascript:;" class="menu-link menu-toggle">
+										<i class="menu-icon flaticon2-photograph"></i>
+										<span class="menu-text">Proyectos</span>
+										<i class="menu-arrow"></i>
 									</a>
+									<div class="menu-submenu">
+										<i class="menu-arrow"></i>
+										<ul class="menu-subnav">
+											<li class="menu-item menu-item-parent" aria-haspopup="true">
+												<span class="menu-link">
+													<span class="menu-text">Actions</span>
+												</span>
+											</li>
+											<li class="menu-item" aria-haspopup="true">
+												<a href="{{ route('product.create') }}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Crear</span>
+												</a>
+											</li>
+											<li class="menu-item" aria-haspopup="true">
+												<a href="{{ route('product.list') }}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Listado</span>
+												</a>
+											</li>
+										</ul>
+									</div>
 								</li>
 
-								<li class="menu-item" aria-haspopup="true">
-									<a href="{{ route('header') }}" class="menu-link">
-										<i class="menu-icon flaticon-web"></i>
-										<span class="menu-text">Banner</span>
+								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+									<a href="javascript:;" class="menu-link menu-toggle">
+										<i class="menu-icon flaticon2-user"></i>
+										<span class="menu-text">Staff</span>
+										<i class="menu-arrow"></i>
 									</a>
+									<div class="menu-submenu">
+										<i class="menu-arrow"></i>
+										<ul class="menu-subnav">
+											<li class="menu-item menu-item-parent" aria-haspopup="true">
+												<span class="menu-link">
+													<span class="menu-text">Actions</span>
+												</span>
+											</li>
+											<li class="menu-item" aria-haspopup="true">
+												<a href="{{ route('staff.create') }}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Crear</span>
+												</a>
+											</li>
+											<li class="menu-item" aria-haspopup="true">
+												<a href="{{ route('staff.list') }}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Listado</span>
+												</a>
+											</li>
+										</ul>
+									</div>
 								</li>
 
 								
