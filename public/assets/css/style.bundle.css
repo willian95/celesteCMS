@@ -6021,7 +6021,7 @@ button.bg-light:focus {
   background-color: #d1dde8 !important; }
 
 .bg-dark {
-  background-color: #181C32 !important; }
+  background-color: #09080814  !important; }
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,
@@ -18400,7 +18400,7 @@ a.text-success:hover, a.text-success:focus {
   color: #12827c !important; }
 
 .text-info {
-  color: #8950FC !important; }
+  color:#6D6A75!important; }
 
 a.text-info:hover, a.text-info:focus {
   color: #5605fb !important; }
@@ -53322,7 +53322,7 @@ code {
 .svg-icon.svg-icon-info svg g [fill] {
   -webkit-transition: fill 0.3s ease;
   transition: fill 0.3s ease;
-  fill: #8950FC !important; }
+  fill: #000 !important; }
 
 .svg-icon.svg-icon-info svg:hover g [fill] {
   -webkit-transition: fill 0.3s ease;
@@ -62622,7 +62622,7 @@ body {
   background-color: #fff ; }
   .aside-menu .menu-nav > .menu-item > .menu-heading .menu-text,
   .aside-menu .menu-nav > .menu-item > .menu-link .menu-text {
-    color: #a2a3b7 ; }
+    color: #000 ; }
   .aside-menu .menu-nav > .menu-item > .menu-heading .menu-icon,
   .aside-menu .menu-nav > .menu-item > .menu-link .menu-icon {
     color: #494b74 ; }
