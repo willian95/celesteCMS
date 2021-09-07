@@ -40,7 +40,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script>
 
 			function toggleUserOptions(){
-				
+
 				if($("#user-options-menu").hasClass("show")){
 					$("#user-options-menu").removeClass("show")
 				}else{
@@ -73,7 +73,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				height: 120px;
 				animation: spin 2s linear infinite;
 			}
-			
+
 			@keyframes spin {
 				0% { transform: rotate(0deg); }
 				100% { transform: rotate(360deg); }
@@ -90,7 +90,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="{{ url('/') }}">
-				<img alt="Logo" class="w-45px" src="{{ asset('assets/logo-white.png') }}" />
+				<img alt="Logo" class="w-45px" src="{{ asset('assets/logo-black.png') }}" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -133,7 +133,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="{{ url('/') }}">
-							<img alt="Logo" src="{{ asset('assets/logo-white.png') }}" style="width: 100px;" />
+							<img alt="Logo" src="{{ asset('assets/logo-black.png') }}" style="width: 100px;" />
 						</a>
 					</div>
 					<!--end::Brand-->
@@ -246,7 +246,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 								</li>
 
-								
+
 							</ul>
 							<!--end::Menu Nav-->
 						</div>
@@ -265,14 +265,14 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
 								<!--begin::Header Menu-->
 								<div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
-									
+
 								</div>
 								<!--end::Header Menu-->
 							</div>
 							<!--end::Header Menu Wrapper-->
 							<!--begin::Topbar-->
 							<div class="topbar">
-								
+
 								<!--begin::User-->
 								<div class="topbar-item">
 									<div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle" onclick="toggleUserOptions()">
@@ -285,9 +285,9 @@ License: You must have a valid license purchased only from themeforest(the above
 									<!--begin::Dropdown-->
 									<div id="user-options-menu" class="dropdown-menu" style="right: 0; float:right !important; left: unset; padding-left: 1rem; padding-bottom: 1rem;">
 										<!--begin:Header-->
-										
+
 											<a href="{{ url('/logout') }}" class="btn btn-success btn-sm font-weight-bold font-size-sm mt-2">Cerrar sesión</a>
-										
+
 										<!--end:Nav-->
 									</div>
 									<!--end::Dropdown-->
@@ -301,9 +301,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--end::Header-->
 					<!--begin::Content-->
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-						
+
 						@yield("content")
-						
+
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
@@ -313,8 +313,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--begin::Copyright-->
 							<div class="text-dark text-center" style="width: 100%;">
 								<span class="text-muted font-weight-bold mr-2">2020 - 2021©</span>
-								<a href="h#" target="_blank" class="text-dark-75 text-hover-primary">Binnops Copyright</a>
-							</div>
+								<a href="h#" target="_blank" class="text-dark-75 text-hover-primary">Celeste & Piedra Copyrights 2021
 							<!--end::Copyright-->
 							<!--begin::Nav-->
 							<!--end::Nav-->
@@ -374,14 +373,14 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 				</div>
 				<!--end::Header-->
-				
+
 			</div>
 			<!--end::Content-->
 		</div>--}}
 		<!-- end::User Panel-->
-		
-		
-		
+
+
+
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop">
 			<span class="svg-icon">
