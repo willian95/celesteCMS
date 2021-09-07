@@ -441,7 +441,7 @@
     }
 
     .login100-form-btn:hover {
-        background: #0a74ad;
+        background:#606060;
     }
 
 
