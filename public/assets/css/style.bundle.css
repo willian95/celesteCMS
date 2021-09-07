@@ -18400,10 +18400,10 @@ a.text-success:hover, a.text-success:focus {
   color: #12827c !important; }
 
 .text-info {
-  color:#6D6A75!important; }
+  color:#000!important; }
 
 a.text-info:hover, a.text-info:focus {
-  color: #5605fb !important; }
+  color: #000 !important; }
 
 .text-warning {
   color: #FFA800 !important; }
