@@ -3,7 +3,7 @@
 @section("content")
 
     <div class="d-flex flex-column-fluid">
-        
+
         <!--begin::Container-->
         <div class="container">
             <!--begin::Card-->
@@ -18,7 +18,7 @@
                 <!--begin::Body-->
                 <div class="card-body">
                     <div class="row" id="dev-products">
-                        
+
                         <div class="loader-cover-custom" v-if="loading == true">
                             <div class="loader-custom"></div>
                         </div>
@@ -34,14 +34,14 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image">Imágen</label>
+                                <label for="image">Imágen (jpg,png | Dimensiones recomendadas: 1110x500px )</label>
                                 <input type="file" class="form-control" ref="file" @change="onImageChange" accept="image/*" style="overflow: hidden;">
 
                                 <img id="blah" :src="imagePreview" class="full-image" style="margin-top: 10px; width: 40%">
                                 <div v-if="pictureStatus == 'subiendo'" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" :style="{'width': `${imageProgress}%`}">
                                     @{{ imageProgress }}%
                                 </div>
-                                
+
                                 <p v-if="pictureStatus == 'subiendo' && imageProgress < 100">Subiendo</p>
                                 <p v-if="pictureStatus == 'subiendo' && imageProgress == 100">Espere un momento</p>
                                 <p v-if="pictureStatus == 'listo' && imageProgress == 100">Imágen lista</p>
@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label for="description">Descripción</label>
                                 <textarea rows="3" id="editor1"></textarea>
-                                
+
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@
     </script>
 
     <script>
-        
+
         const app = new Vue({
             el: '#dev-products',
             data(){
@@ -119,7 +119,7 @@
                 }
             },
             methods:{
-                
+
                 store(){
 
                     if(this.pictureStatus == "listo"){
@@ -147,10 +147,10 @@
                                     }).then(function() {
                                         window.location.href = "{{ url('/blogs/list') }}";
                                     });
-                                    
+
 
                                 }else{
-                                    
+
                                     alert(res.data.msg)
                                 }
 
@@ -169,8 +169,8 @@
                         })
 
                     }
-                    
-                    
+
+
 
                 },
                 onImageChange(e){
@@ -204,7 +204,7 @@
 
                     }
 
-                   
+
                 },
                 uploadMainImage(){
                     this.imageProgress = 0;
@@ -219,21 +219,21 @@
                     var config = {
                         headers: { "X-Requested-With": "XMLHttpRequest" },
                         onUploadProgress: function(progressEvent) {
-                            
+
                             var progressPercent = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
-                        
+
                             _this.imageProgress = progressPercent
-                            
-                            
+
+
                         }
                     }
 
                     axios.post(
                         "{{ url('/upload/picture') }}",
                         formData,
-                        config                        
+                        config
                     ).then(res => {
-                        
+
                         this.pictureStatus = "listo";
                         this.finalPictureName = res.data.fileRoute
 
@@ -245,7 +245,7 @@
 
             }
         })
-    
+
     </script>
 
 @endpush
