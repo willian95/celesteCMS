@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="image">Imágen (jpg,png | Dimensiones recomendadas: 1350x487px )</label>
                                 <input type="file" class="form-control" ref="file" @change="onMainImageChange" accept="image/*" style="overflow: hidden;">
