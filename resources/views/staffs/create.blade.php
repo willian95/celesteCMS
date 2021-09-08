@@ -42,12 +42,8 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                               <!--- <label for="image">Imágen</label>
-                                <input type="file" class="form-control" ref="file" @change="onImageChange" accept="image/*" style="overflow: hidden;">-->
-
-                                <label  for="image" class="">
-                                Subir archivo<input  type="file" class="form-control" ref="file" @change="onImageChange" accept="image/*" style="display: none;">
-                                </label>
+                                <label for="image">Imágen</label>
+                                <input type="file" class="form-control" ref="file" @change="onImageChange" accept="image/*" style="overflow: hidden;">
 
                                 <img id="blah" :src="imagePreview" class="full-image" style="margin-top: 10px; width: 40%">
                                 <div v-if="pictureStatus == 'subiendo'" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" :style="{'width': `${imageProgress}%`}">
