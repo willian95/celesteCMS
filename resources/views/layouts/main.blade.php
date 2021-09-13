@@ -35,7 +35,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Layout Themes(used by all pages)-->
 		<!--end::Layout Themes-->
 		<!--<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />-->
-		<link rel="shortcut icon" type="image/x-icon" href="https://www.laliberty.com.co/coming/assets/img/favicon.png">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ url('/assets/logo-white.png') }}">
 
 		<script>
 
@@ -313,7 +313,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--begin::Copyright-->
 							<div class="text-dark text-center" style="width: 100%;">
 								<span class="text-muted font-weight-bold mr-2">2020 - 2021©</span>
-								<a href="h#" target="_blank" class="text-dark-75 text-hover-primary">Binnops Copyright</a>
+								<a href="h#" target="_blank" class="text-dark-75 text-hover-primary">Celeste & Piedra Copyright</a>
 							</div>
 							<!--end::Copyright-->
 							<!--begin::Nav-->
