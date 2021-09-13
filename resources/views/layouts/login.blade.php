@@ -104,7 +104,7 @@
     .login_admin button {
         outline: none !important;
         border: none;
-        background: #0d3c66;
+        background: #000;
         width: 114px;
 
         font-family: inherit !important;
@@ -441,7 +441,7 @@
     }
 
     .login100-form-btn:hover {
-        background: #0a74ad;
+        background:#606060;
     }
 
 

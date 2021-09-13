@@ -6,9 +6,9 @@
         <div class="container">
 
             <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-                
+
                 <div class="col-12">
-                    
+
                     <div class="card card-custom bg-gray-100 card-stretch gutter-b">
                         <!--begin::Body-->
                         <div class="card-body p-0 position-relative overflow-hidden">
@@ -35,15 +35,62 @@
 
                                     <div class="col bg-white px-6 py-8 rounded-xl mr-7">
                                         <span class="svg-icon svg-icon-3x svg-icon-info d-block my-2">
+                                        <svg width="24px" height="24px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<g>
+		<path d="M494.14,0H17.86C7.997,0,0,7.997,0,17.86V494.14C0,504.003,7.997,512,17.86,512H494.14c9.864,0,17.86-7.997,17.86-17.86
+			V17.86C512,7.997,504.003,0,494.14,0z M101.209,476.279c-16.414,0-29.767-13.354-29.767-29.767
+			c0-16.414,13.354-29.767,29.767-29.767s29.767,13.354,29.767,29.767C130.977,462.925,117.623,476.279,101.209,476.279z
+			 M196.465,476.279c-16.414,0-29.767-13.354-29.767-29.767c0-16.414,13.354-29.767,29.767-29.767
+			c16.414,0,29.767,13.354,29.767,29.767C226.233,462.925,212.879,476.279,196.465,476.279z M440.558,362.414
+			c-0.129-3.443-1.267-6.937-3.646-10.064L326.189,206.787c-7.147-9.396-21.292-9.384-28.43,0l-19.319,25.398l20.707,27.224
+			c5.971,7.851,4.448,19.056-3.403,25.028c-7.85,5.971-19.056,4.448-25.027-3.402c-12.003-15.78-42.386-55.725-56.477-74.248
+			c-7.138-9.383-21.284-9.395-28.43,0L75.087,352.35c-2.378,3.127-3.517,6.619-3.646,10.064V89.302
+			c0.001-9.864,7.998-17.86,17.862-17.86h333.395c9.864,0,17.86,7.997,17.86,17.86V362.414z"/>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
-                                            
-                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo13\dist/../src/media/svg/icons\Clothes\Briefcase.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+
+                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo13\dist/../src/media/svg/icons\Clothes\Briefcase.svg--><!---<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <rect x="0" y="0" width="24" height="24"/>
                                                     <path d="M5.84026576,8 L18.1597342,8 C19.1999115,8 20.0664437,8.79732479 20.1528258,9.83390904 L20.8194924,17.833909 C20.9112219,18.9346631 20.0932459,19.901362 18.9924919,19.9930915 C18.9372479,19.9976952 18.8818364,20 18.8264009,20 L5.1735991,20 C4.0690296,20 3.1735991,19.1045695 3.1735991,18 C3.1735991,17.9445645 3.17590391,17.889153 3.18050758,17.833909 L3.84717425,9.83390904 C3.93355627,8.79732479 4.80008849,8 5.84026576,8 Z M10.5,10 C10.2238576,10 10,10.2238576 10,10.5 L10,11.5 C10,11.7761424 10.2238576,12 10.5,12 L13.5,12 C13.7761424,12 14,11.7761424 14,11.5 L14,10.5 C14,10.2238576 13.7761424,10 13.5,10 L10.5,10 Z" fill="#000000"/>
                                                     <path d="M10,8 L8,8 L8,7 C8,5.34314575 9.34314575,4 11,4 L13,4 C14.6568542,4 16,5.34314575 16,7 L16,8 L14,8 L14,7 C14,6.44771525 13.5522847,6 13,6 L11,6 C10.4477153,6 10,6.44771525 10,7 L10,8 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
                                                 </g>
-                                            </svg>
+                                            </svg>-->
 
                                             <!--end::Svg Icon-->
                                         </span>
@@ -65,8 +112,8 @@
                                         <a href="#" class="text-info font-weight-bold font-size-h6">Staff: {{ App\Models\Staff::count() }} </a>
                                     </div>
 
-                                    
-                                   
+
+
                                 </div>
                                 <!--end::Row-->
 
@@ -79,7 +126,7 @@
 
                 </div>
 
-                
+
             </div>
 
         </div>

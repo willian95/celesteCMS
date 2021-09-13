@@ -13,14 +13,14 @@
                 <!--begin::Header-->
                 <div class="card-header flex-wrap border-0 pt-6 pb-0">
                     <div class="card-title">
-                        <h3 class="card-label">Crear producto
+                        <h3 class="card-label">Crear proyecto
                     </div>
                 </div>
                 <!--end::Header-->
                 <!--begin::Body-->
                 <div class="card-body">
                     <div class="row">
-                                
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="name">Título</label>
@@ -45,9 +45,9 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image">Imágen</label>
+                                <label for="image">Imágen (jpg,png | Dimensiones recomendadas: 1350x487px )</label>
                                 <input type="file" class="form-control" ref="file" @change="onMainImageChange" accept="image/*" style="overflow: hidden;">
 
                                 <img id="blah" :src="imagePreview" class="full-image" style="margin-top: 10px; width: 40%">
@@ -55,7 +55,7 @@
                                 <div v-if="pictureStatus == 'subiendo'" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" :style="{'width': `${imageProgress}%`}">
                                     @{{ imageProgress }}%
                                 </div>
-                                
+
                                 <p v-if="pictureStatus == 'subiendo' && imageProgress < 100">Subiendo</p>
                                 <p v-if="pictureStatus == 'subiendo' && imageProgress == 100">Espere un momento</p>
                                 <p v-if="pictureStatus == 'listo' && imageProgress == 100">Imágen lista</p>
@@ -94,16 +94,16 @@
                                 <tbody>
                                     <tr v-for="(workImage, index) in workImages">
                                         <td>@{{ index + 1 }}</td>
-                                        
+
                                         <td>
                                             <img v-if="workImage.image.indexOf('image') >= 0" :src="workImage.image" style="width: 40%;">
                                         </td>
                                         <td>
-                                            
+
                                             <div v-if="workImage.status == 'subiendo'" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" :style="{'width': `${workImage.progress}%`}">
                                                 @{{ workImage.progress }}%
                                             </div>
-                                           
+
                                             <p v-if="workImage.status == 'subiendo' && workImage.progress < 100">Subiendo</p>
                                             <p v-if="workImage.status == 'subiendo' && workImage.progress == 100">Espere un momento</p>
                                             <p v-if="workImage.status == 'listo' && workImage.progress == 100">Contenido listo</p>
@@ -117,7 +117,7 @@
 
                         </div>
 
-    
+
                     </div>
 
                     <div class="row">
@@ -135,7 +135,7 @@
             <!--end::Card-->
         </div>
         <!--end::Container-->
- 
+
 
 
         <!-- Modal-->
@@ -149,11 +149,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="type">Imágen</label>
+                                    <label for="type">Imágen (jpg,png | Dimensiones recomendadas: 1350x487px )</label>
                                     <input type="file" class="form-control" ref="file" @change="onSecondaryImageChange" accept="image/*" style="overflow: hidden;">
                                     <img id="blah" :src="secondaryPreviewPicture" class="full-image" style="margin-top: 10px; width: 40%">
 
@@ -163,14 +163,14 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
                         <button class="btn btn-success" @click="addSecondaryImage()">Añadir</button>
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
 
 
     </div>
@@ -181,7 +181,7 @@
 
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        
+
         const app = new Vue({
             el: '#dev-products',
             data(){
@@ -195,9 +195,9 @@
                     squareMeter:"",
                     description:"",
                     action:"create",
-    
+
                     errors:[],
-                    loading:false,                
+                    loading:false,
 
                     imagePreview:"",
                     imageHoverPreview:"",
@@ -210,11 +210,11 @@
                     secondaryPreviewPicture:"",
                     fileName:""
 
-                    
+
                 }
             },
             methods:{
-                
+
                 store(){
 
                     var completeUploading = true
@@ -233,13 +233,13 @@
 
                         this.loading = true
                         axios.post("{{ url('/products/store') }}", {
-                            name:this.name, 
+                            name:this.name,
                             location:this.location,
                             square_meter: this.squareMeter,
-                            image: this.finalPictureName, 
-                            description: CKEDITOR.instances.editor1.getData(), 
-                            workImages: this.imagesToUpload, 
-                            mainImageFileType: this.mainImageFileType, 
+                            image: this.finalPictureName,
+                            description: CKEDITOR.instances.editor1.getData(),
+                            workImages: this.imagesToUpload,
+                            mainImageFileType: this.mainImageFileType,
                         }).then(res => {
                             this.loading = false
                             if(res.data.success == true){
@@ -251,23 +251,23 @@
                                 }).then(function() {
                                     window.location.href = "{{ url('products/list') }}";
                                 });
-                                
+
 
                             }else{
-                            
+
                                 alert(res.data.msg)
                             }
 
                         }).catch(err => {
-                            
+
                             this.loading = false
                             this.errors = err.response.data.errors
-                            
+
                             swal({
                                 text: "Hay campos que debes verificar!",
                                 icon: "warning"
                             })
-                        
+
                         })
 
 
@@ -279,11 +279,11 @@
                         })
 
                     }
-                    
-                    
+
+
 
                 },
-                
+
                 onMainImageChange(e){
                     this.getImage(e, "main")
                 },
@@ -299,7 +299,7 @@
                     }else{
                         this.imageHoverPreview = URL.createObjectURL(picture);
                     }
-                    
+
                     let files = e.target.files || e.dataTransfer.files;
                     if (!files.length)
                         return;
@@ -309,10 +309,10 @@
                 createImage(file, type) {
                     this.file = file
                     if(file['type'].split('/')[0] == "image"){
-                        
-                     
+
+
                         this.uploadMainImage(type)
-                    
+
                     }else{
 
                         swal({
@@ -321,17 +321,17 @@
                         })
 
                     }
-                    
+
                 },
                 uploadMainImage(type){
-                    
+
                     if(type == "main"){
 
                         this.imageProgress = 0;
                     }else{
                         this.imageHoverProgress = 0;
                     }
-                    
+
                     let formData = new FormData()
                     formData.append("file", this.file)
 
@@ -339,32 +339,32 @@
                     if(type == "main"){
                         this.pictureStatus = "subiendo";
                     }else{
-                       
+
                         this.pictureHoverStatus = "subiendo";
                     }
 
                     var config = {
                         headers: { "X-Requested-With": "XMLHttpRequest" },
                         onUploadProgress: function(progressEvent) {
-                            
+
                             var progressPercent = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
                             if(type == "main"){
                                 _this.imageProgress = progressPercent
                             }else{
                                 _this.imageHoverProgress = progressPercent
                             }
-                            
-                            
-                            
+
+
+
                         }
                     }
 
                     axios.post(
                         "{{ url('/upload/picture') }}",
                         formData,
-                        config                        
+                        config
                     ).then(res => {
-                        
+
                         if(type == "main"){
                             this.pictureStatus = "listo";
                             this.finalPictureName = res.data.fileRoute
@@ -372,7 +372,7 @@
                             this.pictureHoverStatus = "listo";
                             this.finalHoverPictureName = res.data.fileRoute
                         }
-                        
+
 
                     }).catch(err => {
                         console.log(err)
@@ -393,10 +393,10 @@
 
                     this.file = file
                     if(file['type'].split('/')[0] == "image"){
-                        
-                     
+
+
                         this.uploadCategoryImage(type)
-                    
+
                     }else{
 
                         swal({
@@ -410,34 +410,34 @@
                 uploadCategoryImage(type){
 
                     this.imageCategoryProgress = 0;
-                    
+
                     let formData = new FormData()
                     formData.append("file", this.file)
 
                     var _this = this
                     this.pictureCategoryStatus = "subiendo";
-     
+
                     var config = {
                         headers: { "X-Requested-With": "XMLHttpRequest" },
                         onUploadProgress: function(progressEvent) {
-                            
+
                             var progressPercent = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
-                          
+
                             _this.imageCategoryProgress = progressPercent
-       
+
                         }
                     }
 
                     axios.post(
                         "{{ url('/upload/picture') }}",
                         formData,
-                        config                        
+                        config
                     ).then(res => {
-                        
+
                         this.pictureCategoryStatus = "listo";
                         this.finalCategoryPictureName = res.data.fileRoute
-                        
-                        
+
+
 
                     }).catch(err => {
                         console.log(err)
@@ -486,7 +486,7 @@
                 fetchCategories(){
 
                     axios.get("{{ url('/category/all') }}").then(res => {
-    
+
                         this.categories = res.data.categories
 
                     })
@@ -496,7 +496,7 @@
                 storeColor(){
 
                     this.loading = true
-                  
+
                     axios.post("{{ url('admin/colors/store') }}", {name: this.newColor})
                     .then(res => {
                         this.loading = false
@@ -523,14 +523,14 @@
                         this.loading = false
                         this.formatErrors = err.response.data.errors
                     })
-                    
+
 
                 },
                 fetchColors(){
                     axios.get("{{ url('admin/colors/all') }}").then(res => {
-    
+
                         this.colors = res.data.colors
- 
+
                     })
                 },
 
@@ -549,7 +549,7 @@
                             icon: "error"
                         });
                     }
-                    
+
 
                 },
                 deleteProductFormatSize(index){
@@ -641,18 +641,18 @@
 
                     var _this = this
                     var fileName = this.fileName
-                    
+
                     var config = {
                         headers: { "X-Requested-With": "XMLHttpRequest" },
                         onUploadProgress: function(progressEvent) {
-                            
+
                             var progressPercent = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
-                            
-                            
+
+
                             if(_this.workImages.length > 0){
 
                                 _this.workImages.forEach((data,index) => {
-                                    
+
                                    if(data.originalName == fileName){
                                     _this.workImages[index].progress = progressPercent
                                    }
@@ -660,14 +660,14 @@
                                 })
 
                             }
-                            
+
                         }
                     }
 
                     axios.post(
                         "{{ url('/upload/picture') }}",
                         formData,
-                        config                        
+                        config
                     ).then(res => {
                         this.workImages.forEach((data, index) => {
 
@@ -686,7 +686,7 @@
 
                 },
                 addSecondaryImage(){
-           
+
                     if(this.secondaryPicture != null){
                         this.uploadSecondaryImage()
                         this.workImages.push({image: this.secondaryPicture, status: "subiendo", originalName:this.fileName, finalName:"", progress:0})
@@ -713,7 +713,7 @@
 
             },
             mounted(){
-                
+
                 this.fetchCategories()
                 this.fetchColors()
                 CKEDITOR.replace( 'editor1' );
@@ -721,7 +721,7 @@
             }
 
         })
-    
+
     </script>
 
 @endpush
