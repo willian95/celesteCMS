@@ -849,7 +849,7 @@
                     ).then(res => {
                         this.workImages.forEach((data, index) => {
 
-                            console.log(data)
+                            console.log("data", data)
 
                             let returnedName = res.data.originalName.toLowerCase()
 
