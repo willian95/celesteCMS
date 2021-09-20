@@ -849,9 +849,11 @@
                     ).then(res => {
                         this.workImages.forEach((data, index) => {
 
-                            console.log("data", data)
+                            
 
                             let returnedName = res.data.originalName.toLowerCase()
+
+                            console.log("data", data, returnedName)
 
                             if(data.originalName.toLowerCase() == returnedName.toLowerCase()){
                                 this.workImages[index].status = "listo";
