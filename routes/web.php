@@ -20,7 +20,7 @@ use App\Http\Controllers\ImageController;
 
 Route::get('/', function () {
     return view('login');
-})->middleware("guest");
+})->middleware("guest")->name("login");
 
 Route::post('/login', [AuthController::class, "login"]);
 Route::get('/logout', [AuthController::class, "logout"])->middleware("auth");
