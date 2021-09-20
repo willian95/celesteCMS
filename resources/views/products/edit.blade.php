@@ -853,7 +853,7 @@
 
                             let returnedName = res.data.originalName.toLowerCase()
 
-                            if(data.originalName.toLowerCase() == returnedName.toLowerCase()){
+                            if(data.image.toLowerCase() == returnedName.toLowerCase()){
                                 this.workImages[index].status = "listo";
                                 this.workImages[index].finalName = res.data.fileRoute
                             }
