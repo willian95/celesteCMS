@@ -78,37 +78,6 @@ class ProductController extends Controller
     }
 
     function update(ProjectUpdateRequest $request){
-        ini_set('max_execution_time', 0);
-
-        if($request->get("image") != null){
-
-            try{
-
-                $imageData = $request->get('image');
-    
-                if(strpos($imageData, "svg+xml") > 0){
-    
-                    $data = explode( ',', $imageData);
-                    $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.'."svg";
-                    $ifp = fopen($fileName, 'wb' );
-                    fwrite($ifp, base64_decode( $data[1] ) );
-                    rename($fileName, 'images/products/'.$fileName);
-    
-                }else{
-    
-                    $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                    Image::make($request->get('image'))->save(public_path('images/products/').$fileName);
-    
-                }
-                
-    
-            }catch(\Exception $e){
-    
-                return response()->json(["success" => false, "msg" => "Hubo un problema con la imagen", "err" => $e->getMessage(), "ln" => $e->getLine()]);
-    
-            }
-
-        }
 
         try{
 
@@ -116,7 +85,7 @@ class ProductController extends Controller
             $project->name = $request->name;
             $project->description = $request->description;
             if($request->get("image") != null){
-                $project->image =  url('/').'/images/products/'.$fileName;
+                $project->main_image =  $request->image;
             }
             $project->location = $request->location;
             $project->square_meter = $request->square_meter;
