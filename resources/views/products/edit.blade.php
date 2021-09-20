@@ -855,9 +855,11 @@
 
                             console.log("data", data, returnedName)
 
-                            if(data.originalName.toLowerCase() == returnedName.toLowerCase()){
-                                this.workImages[index].status = "listo";
-                                this.workImages[index].finalName = res.data.fileRoute
+                            if(data.originalName){
+                                if(data.originalName.toLowerCase() == returnedName.toLowerCase()){
+                                    this.workImages[index].status = "listo";
+                                    this.workImages[index].finalName = res.data.fileRoute
+                                }
                             }
 
                         })
