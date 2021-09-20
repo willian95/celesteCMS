@@ -850,10 +850,7 @@
                         this.workImages.forEach((data, index) => {
 
                             
-
                             let returnedName = res.data.originalName.toLowerCase()
-
-                            console.log("data", data, returnedName)
 
                             if(data.originalName){
                                 if(data.originalName.toLowerCase() == returnedName.toLowerCase()){

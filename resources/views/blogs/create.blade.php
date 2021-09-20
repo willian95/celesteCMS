@@ -65,6 +65,25 @@
 
                     </div>
 
+                    {{--<div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="image">Video (mp4)</label>
+                                <input type="file" class="form-control" ref="file" @change="onVideoChange" accept="image/*" style="overflow: hidden;">
+
+                                
+                                <div v-if="videoStatus == 'subiendo'" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" :style="{'width': `${videoProgress}%`}">
+                                    @{{ videoProgress }}%
+                                </div>
+
+                                <p v-if="videoStatus == 'subiendo' && videoProgress < 100">Subiendo</p>
+                                <p v-if="videoStatus == 'subiendo' && videoProgress == 100">Espere un momento</p>
+                                <p v-if="videoStatus == 'listo' && videoProgress == 100">Video lista</p>
+
+                            </div>
+                        </div>
+                    </div>--}}
+
 
                     <div class="row">
                         <div class="col-12">
@@ -115,7 +134,13 @@
                     pictureStatus:"",
                     imageProgress:"",
                     finalPictureName:"",
-                    mainImageFileType:"image"
+                    mainImageFileType:"image",
+
+                    video:"",
+                    videoStatus:"",
+                    videoProgress:"",
+                    finalVideoName:"",
+                    mainVideoFileType:"image"
                 }
             },
             methods:{
@@ -242,6 +267,76 @@
                     })
 
                 },
+
+                onVideoChange(e){
+                    this.video = e.target.files[0];
+
+
+                    let files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+   
+                    this.createImage(files[0]);
+                },
+                createVideo(file) {
+                    this.video = file
+                    this.mainVideoFileType = file['type'].split('/')[0]
+
+                    if(this.mainVideoFileType == "video"){
+                        this.uploadMainVideo()
+                        let reader = new FileReader();
+                        let vm = this;
+                        reader.onload = (e) => {
+                            vm.video = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }else{
+
+                        swal({
+                            text:"Formato no permitido",
+                            "icon": "error"
+                        })
+
+                    }
+
+
+                },
+                uploadMainVideo(){
+                    this.imageProgress = 0;
+                    let formData = new FormData()
+                    formData.append("file", this.file)
+                    formData.append("upload_preset", this.cloudinaryPreset)
+
+                    var _this = this
+                    var fileName = this.fileName
+                    this.pictureStatus = "subiendo";
+
+                    var config = {
+                        headers: { "X-Requested-With": "XMLHttpRequest" },
+                        onUploadProgress: function(progressEvent) {
+
+                            var progressPercent = Math.round((progressEvent.loaded * 100.0) / progressEvent.total);
+
+                            _this.imageProgress = progressPercent
+
+
+                        }
+                    }
+
+                    axios.post(
+                        "{{ url('/upload/picture') }}",
+                        formData,
+                        config
+                    ).then(res => {
+
+                        this.pictureStatus = "listo";
+                        this.finalPictureName = res.data.fileRoute
+
+                    }).catch(err => {
+                        console.log(err)
+                    })
+
+                }
 
             }
         })
