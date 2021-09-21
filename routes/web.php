@@ -6,6 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\HomeImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,8 @@ Route::get("/staffs/fetch", [StaffController::class, "fetch"]);
 Route::get("/staffs/edit/{id}", [StaffController::class, "edit"]);
 
 Route::post("/upload/picture", [ImageController::class, "upload"]);
+
+Route::get("/home-image/index", [HomeImageController::class, "index"]);
+Route::get("/home-image/fetch", [HomeImageController::class, "fetch"]);
+Route::post("/home-image/store", [HomeImageController::class, "store"]);
+Route::post("/home-image/delete", [HomeImageController::class, "delete"]);

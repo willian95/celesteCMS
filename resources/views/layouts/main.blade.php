@@ -82,6 +82,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		</style>
 
+		@stack("styles")
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -245,6 +247,14 @@ License: You must have a valid license purchased only from themeforest(the above
 											</li>
 										</ul>
 									</div>
+								</li>
+
+								<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+									<a href="{{ url('/home-image/index') }}" class="menu-link menu-toggle">
+										<i class="menu-icon flaticon2-website"></i>
+										<span class="menu-text">Banner</span>
+										<i class="menu-arrow"></i>
+									</a>
 								</li>
 
 
