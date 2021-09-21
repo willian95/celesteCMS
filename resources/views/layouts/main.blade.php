@@ -36,7 +36,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--end::Layout Themes-->
 		<!--<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />-->
 	<!--	<link rel="shortcut icon" type="image/x-icon" href="https://www.laliberty.com.co/coming/assets/img/favicon.png">-->
-		<link rel="shortcut icon" type="image/x-icon"  href="{{ url('assets/media/logo-black.png') }}" />
+		<link rel="shortcut icon" type="image/x-icon"  href="{{ url('assets/logo-black.png') }}" />
 
 		<script>
 
