@@ -56,7 +56,7 @@
                                             <p v-if="workImage.status == 'listo' && workImage.progress == 100">Contenido listo</p>
                                         </td>
                                         <td>
-                                            <button v-if="!workImage.status" class="btn btn-danger" ><i class="far fa-trash-alt"></i></button>
+                                            <button v-if="!workImage.status" class="btn btn-danger" @click="deleteWorkImage(workImage.id)"><i class="far fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>

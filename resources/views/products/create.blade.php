@@ -39,6 +39,14 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for="name">Tipo de proyecto</label>
+                                <input type="text" class="form-control" v-model="projectType">
+                                <small v-if="errors.hasOwnProperty('project_type')">@{{ errors['project_type'][0] }}</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label for="name">Metros cuadrados</label>
                                 <input type="text" class="form-control" v-model="squareMeter" @keypress="isNumberDot($event)">
                                 <small v-if="errors.hasOwnProperty('square_meter')">@{{ errors['square_meter'][0] }}</small>
@@ -193,6 +201,7 @@
 
                     location:"",
                     squareMeter:"",
+                    projectType:"",
                     description:"",
                     action:"create",
 
@@ -239,6 +248,7 @@
                             image: this.finalPictureName,
                             description: CKEDITOR.instances.editor1.getData(),
                             workImages: this.imagesToUpload,
+                            project_type: this.projectType,
                             mainImageFileType: this.mainImageFileType,
                         }).then(res => {
                             this.loading = false

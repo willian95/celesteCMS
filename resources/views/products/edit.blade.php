@@ -39,6 +39,14 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for="name">Tipo de proyecto</label>
+                                <input type="text" class="form-control" v-model="projectType">
+                                <small v-if="errors.hasOwnProperty('project_type')">@{{ errors['project_type'][0] }}</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label for="name">Metros cuadrados</label>
                                 <input type="text" class="form-control" v-model="squareMeter" @keypress="isNumberDot($event)">
                                 <small v-if="errors.hasOwnProperty('square_meter')">@{{ errors['square_meter'][0] }}</small>
@@ -340,6 +348,7 @@
                     name:"{{ $project->name }}",
                     location:"{{ $project->location }}",
                     squareMeter:"{{ $project->square_meter }}",
+                    projectType:"{{ $project->project_type }}",
                     description:"",
                     action:"create",
                     
@@ -403,7 +412,7 @@
                             })
 
                             this.loading = true
-                            axios.post("{{ url('/products/update') }}", {id: this.id,name:this.name, image: this.finalPictureName, description: CKEDITOR.instances.editor1.getData(), workImages: this.imagesToUpload, location: this.location, square_meter:this.squareMeter}).then(res => {
+                            axios.post("{{ url('/products/update') }}", {id: this.id,name:this.name, image: this.finalPictureName, description: CKEDITOR.instances.editor1.getData(), workImages: this.imagesToUpload, location: this.location, square_meter:this.squareMeter,  project_type:this.projectType}).then(res => {
                                 this.loading = false
                                 if(res.data.success == true){
 

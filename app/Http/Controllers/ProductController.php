@@ -34,6 +34,7 @@ class ProductController extends Controller
             $project->description = $request->description;
             $project->main_image = $request->image;
             $project->slug = $slug;
+            $project->project_type = $request->project_type;
             $project->location = $request->location;
             $project->square_meter = $request->square_meter;
             $project->save();
@@ -89,6 +90,7 @@ class ProductController extends Controller
             }
             $project->location = $request->location;
             $project->square_meter = $request->square_meter;
+            $project->project_type = $request->project_type;
             $project->update();
 
             $WorkImagesArray = [];

@@ -28,7 +28,8 @@ class ProjectStoreRequest extends FormRequest
             "image" => "required",
             "description" => "required",
             "location" => "required",
-            "square_meter" => "required"
+            "square_meter" => "required",
+            "project_type" => "required"
         ];
     }
 
@@ -40,7 +41,8 @@ class ProjectStoreRequest extends FormRequest
             "image.required" => "Imágen del producto es requerido",
             "description.required" => "Descripción es requerida",
             "location.required" => "Ubicación es requerida",
-            "square_meter" => "Metros cuadrados son requeridos"
+            "square_meter" => "Metros cuadrados son requeridos",
+            "project_type.required" => "Tipo de proyecto es requerido"
 
         ];
 
