@@ -480,7 +480,7 @@
                     }else{
 
                         swal({
-                            text:"Debe seleccionar un archivo de imagen",
+                            text:"Debe seleccionar un archivo de imágen",
                             icon:"error"
                         })
 
@@ -564,7 +564,7 @@
                     }else{
 
                         swal({
-                            text:"Debe seleccionar un archivo de imagen",
+                            text:"Debe seleccionar un archivo de imágen",
                             icon:"error"
                         })
 
@@ -815,7 +815,7 @@
                         reader.readAsDataURL(file);
                     }else{
                         swal({
-                            text:"Debes elegir un archivo de imagen",
+                            text:"Debes elegir un archivo de imágen",
                             icon:"error"
                         })
                     }

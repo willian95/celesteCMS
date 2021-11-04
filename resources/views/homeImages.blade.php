@@ -176,7 +176,7 @@
 
                             swal({
                                 title: "Excelente!",
-                                text: "Imagen agregada!",
+                                text: "Imágen agregada!",
                                 icon: "success"
                             }).then(function() {
                                 window.location.href = "{{ url('/home-image/index') }}";
@@ -227,7 +227,7 @@
                         reader.readAsDataURL(file);
                     }else{
                         swal({
-                            text:"Debes seleccionar un archivo de imagen",
+                            text:"Debes seleccionar un archivo de imágen",
                             icon:"error"
                         })
                     }
@@ -320,7 +320,7 @@
 
                             swal({
                                 title: "Excelente!",
-                                text: "Imagen eliminada!",
+                                text: "Imágen eliminada!",
                                 icon: "success"
                             }).then(function() {
                                 window.location.href = "{{ url('/home-image/index') }}";
