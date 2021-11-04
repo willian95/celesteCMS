@@ -34,7 +34,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image">Imágen</label>
+                                <label for="image">Imágen (jpg,png | Dimensiones recomendadas: 1110x500px )</label>
                                 <input type="file" class="form-control" ref="file" @change="onImageChange" accept="image/*|video/*" style="overflow: hidden;">
 
                                 <img id="blah" :src="imagePreview" class="full-image" style="margin-top: 10px; width: 40%">
