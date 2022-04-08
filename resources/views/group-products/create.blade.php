@@ -13,7 +13,7 @@
             <!--begin::Header-->
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
-                    <h3 class="card-label">Crear proyecto
+                    <h3 class="card-label">Crear proyecto grupo
                 </div>
             </div>
             <!--end::Header-->
@@ -71,6 +71,7 @@
                             <small v-if="errors.hasOwnProperty('image')">@{{ errors['image'][0] }}</small>
                         </div>
                     </div>
+
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -256,7 +257,7 @@
                         name: this.name,
                         location: this.location,
                         square_meter: this.squareMeter,
-                        section: "project",
+                        section: "group",
                         sort: this.sort,
                         image: this.finalPictureName,
                         description: CKEDITOR.instances.editor1.getData(),
@@ -272,7 +273,7 @@
                                 text: "Proyecto creado!",
                                 icon: "success"
                             }).then(function() {
-                                window.location.href = "{{ url('products/list') }}";
+                                window.location.href = "{{ url('group-products/list') }}";
                             });
 
 

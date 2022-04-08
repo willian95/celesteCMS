@@ -40,13 +40,15 @@ Route::post("/blogs/update", [BlogController::class, "update"])->middleware("aut
 Route::get("/blogs/fetch/{page}", [BlogController::class, "fetch"])->middleware("auth");
 Route::get("/blogs/edit/{id}", [BlogController::class, "edit"])->middleware("auth");
 
-Route::get("/products/create",  [ProductController::class, "create"])->name("product.create");
+Route::view("/products/create",  "products.create")->name("product.create")->middleware("auth");
+Route::view("/group-products/create",  "group-products.create")->name("group-product.create")->middleware("auth");
 Route::view("/products/list", "products.list")->name("product.list")->middleware("auth");
+Route::view("/group-products/list", "group-products.list")->name("group-product.list")->middleware("auth");
 Route::post("/products/store", [ProductController::class, "store"]);
 Route::post("/products/delete", [ProductController::class, "delete"]);
 Route::post("/products/update", [ProductController::class, "update"]);
-Route::get("/products/fetch", [ProductController::class, "fetch"]);
-Route::get("/products/edit/{id}", [ProductController::class, "edit"]);
+Route::get("/products/{section}/fetch", [ProductController::class, "fetch"]);
+Route::get("/products/{section}/edit/{id}", [ProductController::class, "edit"]);
 
 Route::get("/staffs/create",  [StaffController::class, "create"])->name("staff.create");
 Route::view("/staffs/list", "staffs.list")->name("staff.list")->middleware("auth");

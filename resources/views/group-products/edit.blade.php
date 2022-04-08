@@ -13,7 +13,7 @@
             <!--begin::Header-->
             <div class="card-header flex-wrap border-0 pt-6 pb-0">
                 <div class="card-title">
-                    <h3 class="card-label">Crear proyecto
+                    <h3 class="card-label">Editar proyecto grupo
                 </div>
             </div>
             <!--end::Header-->
@@ -55,7 +55,7 @@
 
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label for="image">Imágen (jpg,png | Dimensiones recomendadas: 1350x487px )</label>
+                            <label for="image">Imágen</label>
                             <input type="file" class="form-control" ref="file" @change="onMainImageChange" accept="image/*" style="overflow: hidden;">
 
                             <img id="blah" :src="imagePreview" class="full-image" style="margin-top: 10px; width: 40%">
@@ -83,15 +83,16 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="description">Descripción</label>
-                            <textarea rows="3" id="editor1"></textarea>
+                            <textarea rows="3" id="editor1">{!! $project->description !!}</textarea>
                             <small v-if="errors.hasOwnProperty('description')">@{{ errors['description'][0] }}</small>
                         </div>
                     </div>
 
                 </div>
+
                 <div class="row">
                     <div class="col-12">
-                        <h3 class="text-center">Imágenes secundarias <button class="btn btn-success" data-toggle="modal" data-target="#secondaryImagesModal">+</button></h3>
+                        <h3 class="text-center">Contenido secundario <button class="btn btn-success" data-toggle="modal" data-target="#secondaryImagesModal">+</button></h3>
                     </div>
                 </div>
 
@@ -112,7 +113,7 @@
                                     <td>@{{ index + 1 }}</td>
 
                                     <td>
-                                        <img v-if="workImage.image.indexOf('image') >= 0" :src="workImage.image" style="width: 40%;">
+                                        <img :src="workImage.image" style="width: 40%;">
                                     </td>
                                     <td>
 
@@ -139,7 +140,7 @@
                 <div class="row">
                     <div class="col-12">
                         <p class="text-center">
-                            <button class="btn btn-success" @click="store()">Crear</button>
+                            <button class="btn btn-success" @click="update()">Actualizar</button>
                         </p>
                     </div>
                 </div>
@@ -152,6 +153,140 @@
     </div>
     <!--end::Container-->
 
+    <!-- Modal-->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Categoría</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="type">Categoría</label>
+                        <input type="text" class="form-control" v-model="newCategory">
+                        <small v-if="categoryErrors.hasOwnProperty('category')">@{{ categoryErrors['name'][0] }}</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">Imágen</label>
+                        <input type="file" class="form-control" ref="file" @change="onImageCategoryChange" accept="image/*">
+                        <img id="blah" :src="imageCategoryPreview" class="full-image" style="margin-top: 10px; width: 40%">
+
+                        <div v-if="pictureCategoryStatus == 'subiendo'" class="progress-bar progress-bar-striped" role="progressbar" aria-valuemin="0" aria-valuemax="100" :style="{'width': `${imageCategoryProgress}%`}">
+                            @{{ imageCategoryProgress }}%
+                        </div>
+
+                        <p v-if="pictureCategoryStatus == 'subiendo' && imageCategoryProgress < 100">Subiendo</p>
+                        <p v-if="pictureCategoryStatus == 'subiendo' && imageCategoryProgress == 100">Espere un momento</p>
+                        <p v-if="pictureCategoryStatus == 'listo' && imageCategoryProgress == 100">Imágen lista</p>
+
+                        <small v-if="categoryErrors.hasOwnProperty('image')">@{{ categoryErrors['image'][0] }}</small>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-success" @click="storeCategory()">Añadir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal-->
+    <div class="modal fade" id="presentationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Presentación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="type">Color</label>
+                                <div style="display:flex;">
+                                    <select id="type" class="form-control" v-model="color">
+                                        <option :value="color" v-for="color in colors">@{{ color.name }}</option>
+                                    </select>
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#formatModal">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="price">Precio</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" v-model="price" @keypress="isNumberDot($event)">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">$</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="price">Stock</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" v-model="stock" @keypress="isNumberDot($event)">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-success" @click="addProductFormatSizes()" v-if="action == 'create'">Añadir</button>
+                    <button class="btn btn-success" @click="updateProductFormatSizes()" v-if="action == 'edit'">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal-->
+    <div class="modal fade" id="formatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Color</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="type">Color</label>
+                        <input type="text" class="form-control" v-model="newColor">
+                        <small v-if="formatErrors.hasOwnProperty('name')">@{{ formatErrors['name'][0] }}</small>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-success" @click="storeColor()">Añadir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- Modal-->
@@ -159,7 +294,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Imágen</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Presentación</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -169,7 +304,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="type">Imágen (jpg,png | Dimensiones recomendadas: 1350x487px )</label>
+                                <label for="type">Imágen</label>
                                 <input type="file" class="form-control" ref="file" @change="onSecondaryImageChange" accept="image/*" style="overflow: hidden;">
                                 <img id="blah" :src="secondaryPreviewPicture" class="full-image" style="margin-top: 10px; width: 40%">
 
@@ -188,7 +323,6 @@
         </div>
     </div>
 
-
 </div>
 
 @endsection
@@ -200,39 +334,72 @@
     const app = new Vue({
         el: '#dev-products',
         data() {
+
             return {
                 imagesToUpload: [],
-                workImages: [],
+                file: "",
+                fileType: "",
+                fileName: "",
+                workImages: JSON.parse('{!! $project->secondaryImages !!}'),
                 secondaryPreviewPicture: "",
                 secondaryPicture: "",
+                id: "{{ $project->id }}",
+                categories: [],
+                colors: [],
+                sizes: [],
+                price: "",
+                color: "",
+                size: "",
+                picture: "",
+                imagePreview: "{{ $project->main_image }}",
 
-                location: "",
-                squareMeter: "",
-                sort: "",
-                projectType: "",
+                name: "{{ $project->name }}",
+                location: "{{ $project->location }}",
+                squareMeter: "{{ $project->square_meter }}",
+                sort: "{{ $project->sort }}",
+                projectType: "{{ $project->project_type }}",
                 description: "",
                 action: "create",
 
+                pages: 0,
+                page: 1,
+
+                newCategory: "",
+                imageCategoryPreview: "",
+                imageCategoryProgress: "",
+                pictureCategoryStatus: "",
+                finalCategoryPictureName: "",
+
+                newColor: "",
+                categoryErrors: [],
+                formatErrors: [],
+                sizeErrors: [],
                 errors: [],
                 loading: false,
+                stock: "",
+                productFormaSizesId: "",
 
-                imagePreview: "",
-                imageHoverPreview: "",
+
+                imagePreview: "{{ $project->main_image }}",
                 file: "",
                 imageProgress: 0,
+                imageHoverProgress: 0,
                 pictureStatus: "",
+                pictureHoverStatus: "",
                 finalPictureName: "",
-
-                secondaryPicture: "",
-                secondaryPreviewPicture: "",
-                fileName: ""
-
-
+                finalHoverPictureName: "",
             }
         },
         methods: {
 
-            store() {
+            create() {
+                this.action = "create"
+                this.color = ""
+                this.stock = ""
+                this.price = ""
+            },
+            update() {
+
 
                 var completeUploading = true
 
@@ -242,37 +409,43 @@
                     }
                 })
 
-                if (completeUploading && this.pictureStatus == "listo") {
+                if (completeUploading && this.pictureStatus != "subiendo") {
 
                     this.workImages.forEach((data) => {
-                        this.imagesToUpload.push({
-                            finalName: data.finalName,
-                            type: data.type
-                        })
+                        if (data.hasOwnProperty("id")) {
+                            this.imagesToUpload.push({
+                                id: data.id
+                            })
+                        } else {
+                            this.imagesToUpload.push({
+                                type: data.type,
+                                finalName: data.finalName
+                            })
+                        }
+
                     })
 
                     this.loading = true
-                    axios.post("{{ url('/products/store') }}", {
+                    axios.post("{{ url('/products/update') }}", {
+                        id: this.id,
                         name: this.name,
-                        location: this.location,
-                        square_meter: this.squareMeter,
-                        section: "project",
-                        sort: this.sort,
                         image: this.finalPictureName,
                         description: CKEDITOR.instances.editor1.getData(),
                         workImages: this.imagesToUpload,
-                        project_type: this.projectType,
-                        mainImageFileType: this.mainImageFileType,
+                        location: this.location,
+                        square_meter: this.squareMeter,
+                        sort: this.sort,
+                        project_type: this.projectType
                     }).then(res => {
                         this.loading = false
                         if (res.data.success == true) {
 
                             swal({
                                 title: "Excelente!",
-                                text: "Proyecto creado!",
+                                text: "Proyecto actualizado!",
                                 icon: "success"
                             }).then(function() {
-                                window.location.href = "{{ url('products/list') }}";
+                                window.location.href = "{{ url('/group-products/list') }}";
                             });
 
 
@@ -282,17 +455,9 @@
                         }
 
                     }).catch(err => {
-
                         this.loading = false
                         this.errors = err.response.data.errors
-
-                        swal({
-                            text: "Hay campos que debes verificar!",
-                            icon: "warning"
-                        })
-
                     })
-
 
                 } else {
 
@@ -489,8 +654,8 @@
                                 icon: "success"
                             });
                             this.newCategory = ""
-                            this.imageCategoryPreview = ""
-                            this.finalCategoryPictureName = ""
+                            this.newCategoryPicture = ""
+                            this.newCategoryPreviewPicture = ""
                             this.fetchCategories()
                         } else {
 
@@ -505,10 +670,6 @@
                     })
                     .catch(err => {
                         this.loading = false
-                        swal({
-                            text: "Hay campos que debe corregir",
-                            icon: "error"
-                        })
                         this.categoryErrors = err.response.data.errors
                     })
 
@@ -522,12 +683,10 @@
                 })
 
             },
-
             storeColor() {
 
                 this.loading = true
-
-                axios.post("{{ url('admin/colors/store') }}", {
+                axios.post("{{ url('/admin/color/store') }}", {
                         name: this.newColor
                     })
                     .then(res => {
@@ -540,7 +699,7 @@
                                 icon: "success"
                             });
                             this.newColor = ""
-                            this.fetchColors()
+                            this.fetchFormats()
                         } else {
 
                             swal({
@@ -558,15 +717,14 @@
 
 
             },
-            fetchColors() {
-                axios.get("{{ url('admin/colors/all') }}").then(res => {
+            fetchFormats() {
+                axios.get("{{ url('/admin/colors/all') }}").then(res => {
 
                     this.colors = res.data.colors
 
                 })
             },
-
-            addProductColor() {
+            addProductFormatSizes() {
 
                 if (this.color != null && this.color != "" && this.price != null && this.price != "" && this.stock != null && this.stock != "") {
                     this.productFormatSizes.push({
@@ -586,6 +744,36 @@
                     });
                 }
 
+
+            },
+            updateProductFormatSizes() {
+
+                if (this.color != null && this.color != "" && this.price != null && this.price != "" && this.stock != null && this.stock != "") {
+
+                    this.productFormatSizes[this.productFormaSizesId].color = this.color
+                    this.productFormatSizes[this.productFormaSizesId].stock = this.stock
+                    this.productFormatSizes[this.productFormaSizesId].price = this.price
+
+                    this.color = ""
+                    this.price = ""
+                    this.stock = ""
+                } else {
+                    swal({
+                        title: "Oppss!",
+                        text: "Debes completar todos los campos",
+                        icon: "error"
+                    });
+                }
+
+
+            },
+            editProductFormatSizes(index) {
+
+                this.action = "edit"
+                this.productFormaSizesId = index
+                this.color = this.productFormatSizes[index].color
+                this.stock = this.productFormatSizes[index].stock
+                this.price = this.productFormatSizes[index].price
 
             },
             deleteProductFormatSize(index) {
@@ -652,8 +840,8 @@
             createSecondaryImage(file) {
 
                 this.file = file
-
-                if (file['type'].split('/')[0] == "image") {
+                this.fileType = file['type'].split('/')[0]
+                if (this.fileType == "image") {
                     this.fileName = file['name']
 
                     let reader = new FileReader();
@@ -664,7 +852,7 @@
                     reader.readAsDataURL(file);
                 } else {
                     swal({
-                        text: "Debes seleccionar un archivo de imágen",
+                        text: "Debes elegir un archivo de imágen",
                         icon: "error"
                     })
                 }
@@ -709,11 +897,14 @@
                 ).then(res => {
                     this.workImages.forEach((data, index) => {
 
+
                         let returnedName = res.data.originalName.toLowerCase()
 
-                        if (data.originalName.toLowerCase() == returnedName.toLowerCase()) {
-                            this.workImages[index].status = "listo";
-                            this.workImages[index].finalName = res.data.fileRoute
+                        if (data.originalName) {
+                            if (data.originalName.toLowerCase() == returnedName.toLowerCase()) {
+                                this.workImages[index].status = "listo";
+                                this.workImages[index].finalName = res.data.fileRoute
+                            }
                         }
 
                     })
@@ -748,6 +939,55 @@
 
 
             },
+            onSecondaryImageChange(e) {
+                this.secondaryPicture = e.target.files[0];
+
+                this.secondaryPreviewPicture = URL.createObjectURL(this.secondaryPicture);
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createSecondaryImage(files[0]);
+            },
+            createSecondaryImage(file) {
+
+                this.file = file
+                this.fileType = file['type'].split('/')[0]
+                this.fileName = file['name']
+
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.secondaryPicture = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+
+            addSecondaryImage() {
+
+                if (this.secondaryPicture != null) {
+                    this.uploadSecondaryImage()
+                    this.workImages.push({
+                        image: this.secondaryPicture,
+                        type: this.fileType,
+                        status: "subiendo",
+                        originalName: this.fileName,
+                        finalName: "",
+                        progress: 0
+                    })
+
+                    this.secondaryPicture = ""
+                    this.secondaryPreviewPicture = ""
+
+                } else {
+                    swal({
+                        title: "Oppss!",
+                        text: "Debes añadir una imágen o video",
+                        icon: "error"
+                    });
+                }
+
+
+            },
             deleteWorkImage(index) {
 
                 this.workImages.splice(index, 1)
@@ -758,8 +998,6 @@
         },
         mounted() {
 
-            this.fetchCategories()
-            this.fetchColors()
             CKEDITOR.replace('editor1');
 
         }
