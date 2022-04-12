@@ -14,7 +14,7 @@ class AddSectionSortToProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string("section")->default("projects");
+            $table->string("section")->default("project");
             $table->integer("sort")->nullable()->default(null);
         });
     }
